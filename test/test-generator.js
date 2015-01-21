@@ -4,28 +4,35 @@ var should = chai.should();
  
 var mda = require('../MultiDimensionalArray.js');
 
+
+var isZeroOrOne = function(x) {
+  return (x === 0 || x === 1);
+}
+
 describe('generate_1d', function() {
-  it('should generate an array', function() {
-    var result = mda.generate_1d(3);
-    expect(result).to.be.an('array');
-  });
-
-  it("should generate a specified length", function() {
-    var result = mda.generate_1d(3);
+  it("should return an array(length 3) with no arguments with random boolean values", function() {
+    var result = mda.generate_1d();
     expect(result).to.have.length(3);
-    var result = mda.generate_1d(10);
-    expect(result).to.have.length(10);
-    var result = mda.generate_1d(31415);
-    expect(result).to.have.length(31415);
-  });
 
-  it("should contain all zeroes and ones", function() {
-    var result = mda.generate_1d(100);
     var val;
     for (val in result) {
-      expect(result[val]).to.satisfy(function(x) {return (x === 0 || x === 1);});
+      expect(result[val]).to.satisfy(isZeroOrOne);
     }
-//    expect(result).
-
   });
+
+  it("should return an array(4) with random boolean values when passed 4 as an argument", function() {
+    var result = mda.generate_1d(4);
+    expect(result).to.have.length(4);
+
+    var val;
+    for (val in result) {
+      expect(result[val]).to.satisfy(isZeroOrOne);
+    }
+  });
+
+  it("should return an empty array when passed 'potato'", function() {
+    var result = mda.generate_1d('potato');
+    expect(result).to.have.length(0);
+  });
+
 });
