@@ -9,4 +9,9 @@ describe("MultiDimensionalArray.count", function() {
     var sample_array = [1,0,0,1,0,0,0,0,1];
     expect(mda.count(sample_array)).to.equal(3);
   });
+
+  it("should return number of elements in array that evaluate to true", function() {
+    var sample_array = [[[1,0,0],1],0,0,0,0,1];
+    expect(mda.count(sample_array)).to.equal(3);
+  });
 });
