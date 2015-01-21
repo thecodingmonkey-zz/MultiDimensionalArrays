@@ -53,5 +53,20 @@ describe("generate_2d", function() {
     }
   });
 
-  
+  it("should return a 4x3 when passed one parameter (4)", function() {
+    var result = mda.generate_2d(4);
+    expect(result).to.have.length(4);
+
+    var val;
+    for (val in result) {
+      expect(result[val]).to.have.length(3);
+
+      var elem;
+      for (elem in result[val]) {
+        expect(elem).to.satisfy(isZeroOrOne);
+      }
+    }
+  });  
+
+
 });
