@@ -1,1 +1,58 @@
+var mda = {
+  generate_1d: function(tier1) {
+    if (tier1 === undefined) {
+      tier1 = 3;
+    }
 
+    var result = [];
+    for(var i=0; i < tier1; i++) {
+      // val = a random value, either 0 or 1.  did NOT use a ternary here
+      var val = 0;
+      if (Math.random() > 0.5) {
+        val = 1;
+      }
+
+      result.push(val);
+    }
+    return result;
+  },
+
+  generate_2d: function(tier1, tier2) {
+//    console.log('hello');
+
+    if (tier1 === undefined) {
+      tier1 = 3;
+    }
+    if (tier2 === undefined) {
+      tier2 = 3;
+    }
+
+    var result = [];
+    for(var i=0; i < tier1; i++) {
+      // process is similar to generate_1d, just generates a 1d array
+      // for each element instead of 
+      var val = this.generate_1d(tier2);
+
+      result.push(val);
+    }
+    return result;
+  },
+
+  generate_3d: function(tier1, tier2, tier3) {
+    var result = [];
+    for(var i=0; i < tier1; i++) {
+      var val = this.generate_2d(tier2, tier3);
+
+      result.push(val);
+    }
+
+    return result;
+  },
+
+  count: function(array) {
+
+
+  }
+};
+
+module.exports = mda;

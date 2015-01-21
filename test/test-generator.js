@@ -48,7 +48,7 @@ describe("generate_2d", function() {
 
       var elem;
       for (elem in result[val]) {
-        expect(elem).to.satisfy(isZeroOrOne);
+        expect(result[val][elem]).to.satisfy(isZeroOrOne);
       }
     }
   });
@@ -63,7 +63,7 @@ describe("generate_2d", function() {
 
       var elem;
       for (elem in result[val]) {
-        expect(elem).to.satisfy(isZeroOrOne);
+        expect(result[val][elem]).to.satisfy(isZeroOrOne);
       }
     }
   });  
@@ -78,7 +78,7 @@ describe("generate_2d", function() {
 
       var elem;
       for (elem in result[val]) {
-        expect(elem).to.satisfy(isZeroOrOne);
+        expect(result[val][elem]).to.satisfy(isZeroOrOne);
       }
     }
   });  
@@ -102,8 +102,6 @@ describe("generate_3d", function() {
         for(item in result[val][elem]) {
           expect(result[val][elem][item]).to.satisfy(isZeroOrOne);
         }
-
-//        expect(elem).to.satisfy(isZeroOrOne);
       }
     }  
   });
