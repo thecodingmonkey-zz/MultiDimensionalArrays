@@ -51,7 +51,23 @@ var mda = {
 
   count: function(array) {
 
+    var countTruthy = function(val) {
+      // find # of truthy values if val is an array
+      if (Array.isArray(val)) {
+        return val.reduce( function(prev, next) {
+          return prev + countTruthy(next);
+        }, 0 );
+      }
 
+      // return a number based on the truthy value of the argument
+      // if it is not an array
+      if (val) {
+        return 1;
+      }
+      return 0;
+    }
+
+    return countTruthy(array);
   }
 };
 
