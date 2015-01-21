@@ -36,3 +36,22 @@ describe('generate_1d', function() {
   });
 
 });
+
+describe("generate_2d", function() {
+  it("should return a 3x3 array when passed no parameters", function() {
+    var result = mda.generate_2d();
+    expect(result).to.have.length(3);
+
+    var val;
+    for (val in result) {
+      expect(result[val]).to.have.length(3);
+
+      var elem;
+      for (elem in result[val]) {
+        expect(elem).to.satisfy(isZeroOrOne);
+      }
+    }
+  });
+
+  
+});
