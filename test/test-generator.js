@@ -85,3 +85,27 @@ describe("generate_2d", function() {
 
 });
 
+describe("generate_3d", function() {
+  it("should generate a 3-dimensional array when passed three parameters", function() {
+    var result = mda.generate_3d(5,4,3);
+    expect(result).to.have.length(5);
+
+    var val;
+    for (val in result) {
+      expect(result[val]).to.have.length(4);
+
+      var elem;
+      for (elem in result[val]) {
+        expect(result[val][elem]).to.have.length(3);
+
+        var item;
+        for(item in result[val][elem]) {
+          expect(result[val][elem][item]).to.satisfy(isZeroOrOne);
+        }
+
+//        expect(elem).to.satisfy(isZeroOrOne);
+      }
+    }  
+  });
+});
+
