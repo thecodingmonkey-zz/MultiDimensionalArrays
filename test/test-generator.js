@@ -26,17 +26,29 @@ describe('generate', function() {
     expect(result)
   });
 
+  var isZeroOrOne = function(val) {
+    return (val === 0 || val === 1)
+  }
+
   it('should consist of elements that are all 0\'s or 1\'s', function() {
     var result = mda.generate();
 
     if (result.length !== undefined) {
       for(var i=0; i < result.length; i++) {
         for(var j=0; j < result[i].length; j++) {
-          expect(result[i][j]).to.satisfy(function(val) {return (val === 0 || val === 1)});
+          expect(result[i][j]).to.satisfy(isZeroOrOne);
         }
       }
     }
-
-
   })
+
+  it("should return a 1-dimensional array with one parameter", function() {
+    var result = mda.generate(4);
+    expect(result).to.have.length(4);
+
+    for(var i=0; i < result.length; i++) {
+        expect(result[i]).to.satisfy(isZeroOrOne);
+    }
+
+  });
 });
