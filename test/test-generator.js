@@ -73,7 +73,7 @@ describe("generate_2d", function() {
       subArray.forEach(function(element) {
         expect(element).to.satisfy(isZeroOrOne);
       });
-    })
+    });
   });  
 });
 
@@ -82,20 +82,15 @@ describe("generate_3d", function() {
     var result = mda.generate_3d(5,4,3);
     expect(result).to.have.length(5);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.have.length(4);
-
-      var elem;
-      for (elem in result[val]) {
-        expect(result[val][elem]).to.have.length(3);
-
-        var item;
-        for(item in result[val][elem]) {
-          expect(result[val][elem][item]).to.satisfy(isZeroOrOne);
-        }
-      }
-    }  
+    result.forEach(function(outerArray) {
+      expect(outerArray).to.have.length(4);
+      outerArray.forEach(function(innerArray) {
+        expect(innerArray).to.have.length(3);
+        innerArray.forEach(function(element) {
+          expect(element).to.satisfy(isZeroOrOne);
+        });
+      });
+    });
   });
 });
 
