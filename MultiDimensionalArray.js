@@ -1,5 +1,45 @@
+var default_array_size = 3;
+var HALFSIES = 0.5;
+
+
 var mda = {
-  var default_array_size = 3;
+
+  generate: function(dimensions, length) {
+    if (length === undefined) {
+      return [];
+    }
+
+    var size = Math.pow(length, dimensions);
+    var result = [];
+
+    var i;
+    for(i=0; i < size; i++) {
+      result.push( (Math.random() > 0.5) ? 0 : 1 ); 
+      // 50/50 chance to be a 0 or 1
+    }
+
+    return splitArray(result, length);
+
+    function splitArray(array, partitionSize) {
+//      console.log(array, partitionSize);
+      if (array.length <= partitionSize) {
+        return array;
+      }
+      var eachSize = array.length/partitionSize;
+      var result = [];
+      while (array.length > 0) {
+        var slice = array.splice(0, eachSize);
+        result.push(slice);
+      }
+
+      var newArray = [];
+      result.forEach(function(array) {
+        newArray.push(splitArray(array, partitionSize));
+      });
+      
+      return newArray;
+    }
+  },
 
   generate_1d: function(tier1) {
     if (tier1 === undefined) {  // default parameters
