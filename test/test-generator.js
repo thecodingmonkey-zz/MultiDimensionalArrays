@@ -17,13 +17,6 @@ describe('generate_1d', function() {
     result.forEach(function(val) {
       expect(val).to.satisfy(isZeroOrOne);
     })
-
-    // var val;
-    // for (val in result) {
-    //   expect(result[val]).to.satisfy(isZeroOrOne);
-    // }
-
-
   });
 
   it("should return an array(4) with random boolean values when passed 4 as an argument", function() {
@@ -47,47 +40,41 @@ describe("generate_2d", function() {
     var result = mda.generate_2d();
     expect(result).to.have.length(3);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.have.length(3);
+    result.forEach(function(subArray) {
+      expect(subArray).to.have.length(3);
 
-      var elem;
-      for (elem in result[val]) {
-        expect(result[val][elem]).to.satisfy(isZeroOrOne);
-      }
-    }
+      subArray.forEach(function(element) {
+          expect(element).to.satisfy(isZeroOrOne);
+      });
+
+    });
   });
 
   it("should return a 4x3 when passed one parameter (4)", function() {
     var result = mda.generate_2d(4);
     expect(result).to.have.length(4);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.have.length(3);
+    result.forEach(function(subArray) {
+      expect(subArray).to.have.length(3);
 
-      var elem;
-      for (elem in result[val]) {
-        expect(result[val][elem]).to.satisfy(isZeroOrOne);
-      }
-    }
+      subArray.forEach(function(element) {
+        expect(element).to.satisfy(isZeroOrOne);
+      });
+    });
   });  
 
   it("should return a 5x4 when passed two parameters (5,4)", function() {
     var result = mda.generate_2d(5,4);
     expect(result).to.have.length(5);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.have.length(4);
+    result.forEach(function(subArray) {
+      expect(subArray).to.have.length(4);
 
-      var elem;
-      for (elem in result[val]) {
-        expect(result[val][elem]).to.satisfy(isZeroOrOne);
-      }
-    }
+      subArray.forEach(function(element) {
+        expect(element).to.satisfy(isZeroOrOne);
+      });
+    })
   });  
-
 });
 
 describe("generate_3d", function() {
