@@ -65,24 +65,27 @@ module.exports = {
     return result;
   },
 
-  count: function(array) {
+  count: function(array, matchValue) {
 
-    var countTruthy = function(val) {
+    var countTruthy = function(val, matchValue) {
       // find # of truthy values if val is an array
       if (Array.isArray(val)) {
         return val.reduce( function(prev, next) {
-          return prev + countTruthy(next);
+          return prev + countTruthy(next, matchValue);
         }, 0 );
       }
 
       // return a number based on the truthy value of the argument
       // if it is not an array
-      if (val) {
+      if ((val && matchValue === undefined) || // default case, check if truthy
+        (val === matchValue && matchValue != undefined) ||
+        (val == matchValue && typeof(matchValue) == 'boolean')) { 
+                              // modified case: compare to specified parameter
         return 1;
       }
       return 0;
     }
 
-    return countTruthy(array);
+    return countTruthy(array, matchValue);
   }
 }
