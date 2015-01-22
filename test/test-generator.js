@@ -14,20 +14,25 @@ describe('generate_1d', function() {
     var result = mda.generate_1d();
     expect(result).to.have.length(3);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.satisfy(isZeroOrOne);
-    }
+    result.forEach(function(val) {
+      expect(val).to.satisfy(isZeroOrOne);
+    })
+
+    // var val;
+    // for (val in result) {
+    //   expect(result[val]).to.satisfy(isZeroOrOne);
+    // }
+
+
   });
 
   it("should return an array(4) with random boolean values when passed 4 as an argument", function() {
     var result = mda.generate_1d(4);
     expect(result).to.have.length(4);
 
-    var val;
-    for (val in result) {
-      expect(result[val]).to.satisfy(isZeroOrOne);
-    }
+    result.forEach(function(val) {
+      expect(val).to.satisfy(isZeroOrOne);
+    });
   });
 
   it("should return an empty array when passed 'potato'", function() {
