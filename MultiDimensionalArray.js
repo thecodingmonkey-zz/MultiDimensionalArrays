@@ -1,5 +1,6 @@
+var default_array_size = 3;
+
 var mda = {
-  var default_array_size = 3;
 
   generate_1d: function(tier1) {
     if (tier1 === undefined) {  // default parameters
