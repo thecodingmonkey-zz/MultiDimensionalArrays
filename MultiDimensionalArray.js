@@ -9,6 +9,8 @@ var mda = {
       return [];
     }
 
+    // algorithm:
+    // make entire array, then recursively break it up
     var size = Math.pow(length, dimensions);
     var result = [];
 
@@ -21,7 +23,6 @@ var mda = {
     return splitArray(result, length);
 
     function splitArray(array, partitionSize) {
-//      console.log(array, partitionSize);
       if (array.length <= partitionSize) {
         return array;
       }
@@ -102,8 +103,9 @@ var mda = {
 
       // return a number based on the truthy value of the argument
       // if it is not an array
-      if ((val && matchValue === undefined) || 
+      if ((val && matchValue === undefined) || // default case, check if truthy
         (val === matchValue && matchValue != undefined)) {
+                              // modified case: compare to specified parameter
         return 1;
       }
       return 0;
