@@ -1,7 +1,9 @@
 var mda = {
+  var default_array_size = 3;
+
   generate_1d: function(tier1) {
-    if (tier1 === undefined) {
-      tier1 = 3;
+    if (tier1 === undefined) {  // default parameters
+      tier1 = default_array_size;
     }
 
     var result = [];
@@ -18,19 +20,18 @@ var mda = {
   },
 
   generate_2d: function(tier1, tier2) {
-//    console.log('hello');
-
+    // supply default parameters
     if (tier1 === undefined) {
-      tier1 = 3;
+      tier1 = default_array_size;
     }
     if (tier2 === undefined) {
-      tier2 = 3;
+      tier2 = default_array_size;
     }
 
     var result = [];
     for(var i=0; i < tier1; i++) {
       // process is similar to generate_1d, just generates a 1d array
-      // for each element instead of 
+      // for each element instead of a single 1/0 element
       var val = this.generate_1d(tier2);
 
       result.push(val);
@@ -40,9 +41,9 @@ var mda = {
 
   generate_3d: function(tier1, tier2, tier3) {
     var result = [];
+    // process is similar to the 2d array loop
     for(var i=0; i < tier1; i++) {
       var val = this.generate_2d(tier2, tier3);
-
       result.push(val);
     }
 
