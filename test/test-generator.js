@@ -31,4 +31,3 @@ describe("generate", function() {
     });
   });
 });
-
