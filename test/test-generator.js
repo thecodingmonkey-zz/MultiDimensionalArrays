@@ -33,4 +33,8 @@ describe("generate", function() {
       });
     });
   });
+
+  it("should choke on potato", function() {
+    result = mda.generate(4, 'potato');
+  });
 });
