@@ -16,7 +16,7 @@ var mda = {
 
     var i;
     for(i=0; i < size; i++) {
-      result.push( (Math.random() > 0.5) ? 0 : 1 ); 
+      result.push( (Math.random() > HALFSIES) ? 0 : 1 ); 
       // 50/50 chance to be a 0 or 1
     }
 
