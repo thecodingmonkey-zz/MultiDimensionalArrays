@@ -26,6 +26,9 @@ describe("generate", function() {
         expect(subArray2).to.have.length(3);
         subArray2.forEach(function(subArray3) {
           expect(subArray3).to.have.length(3);
+          subArray3.forEach(function(val) {
+            expect(val).to.satisfy(isZeroOrOne);
+          })
         });
       });
     });
