@@ -1,18 +1,53 @@
+var default_array_size = 3;
+
 module.exports = {
-  generate: function(tier1, tier2, tier3) {
-    if (tier1 === undefined) {
-      return this.generate_2d(3,3);
+  generate: function() {
+    var args = [].slice.call(arguments);
+
+    if (args.length === 0) {
+      args = [3,3];
+    }
+    if (typeof(args[0]) != 'number') {
+      return [];
     }
 
-    if (tier2 === undefined) {
-      return this.generate_1d(tier1);
+
+    // extract the array out if this function was called recursively
+    if (args[1] === undefined) {
+      args = args[0];
+    }
+//    console.log(args);
+
+    if (args[1] === undefined && Array.isArray(args[0]) === false) {
+//      console.log("generate: " + args)
+      return this.generate_1d(args);
     }
 
-    if (tier3 === undefined) {
-      return this.generate_2d(tier1, tier2);
+    var result = [], i, loopsize = args.shift();
+//    args.push(loopsize);
+    if (typeof(loopsize) != 'number') {
+      loopsize = 0;
     }
+    for(i=0; i < loopsize; i++) {
+      var subArraySize = args;
+//      console.log(loopsize, subArraySize);
+      result.push(this.generate.apply(this, args) );
+    }
+    return result;
 
-    return this.generate_3d(tier1, tier2, tier3);
+    // if (tier1 === undefined) {
+    //   return this.generate_2d(3,3);
+    // }
+
+    // if (tier2 === undefined) {
+    //   return this.generate_1d(tier1);
+    // }
+
+    // if (tier3 === undefined) {
+    //   return this.generate_2d(tier1, tier2);
+    // }
+
+    // return this.generate_3d(tier1, tier2, tier3);
 
   },
 
@@ -78,9 +113,9 @@ module.exports = {
       // return a number based on the truthy value of the argument
       // if it is not an array
       if ((val && matchValue === undefined) || // default case, check if truthy
-        (val === matchValue && matchValue != undefined) ||
+        (val === matchValue && matchValue != undefined) ||  // non-truthy check
         (val == matchValue && typeof(matchValue) == 'boolean')) { 
-                              // modified case: compare to specified parameter
+                              // truthy check if matchValue is a boolean
         return 1;
       }
       return 0;
