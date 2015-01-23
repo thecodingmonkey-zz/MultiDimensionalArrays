@@ -4,51 +4,33 @@ module.exports = {
   generate: function() {
     var args = [].slice.call(arguments);
 
+    // default case if no parameters are set
     if (args.length === 0) {
       args = [3,3];
     }
+
+    // case if a non-number is passed as a size
     if (typeof(args[0]) != 'number') {
       return [];
     }
-
 
     // extract the array out if this function was called recursively
     if (args[1] === undefined) {
       args = args[0];
     }
-//    console.log(args);
 
+    // if only one parameter is specified, generate a 1d array
     if (args[1] === undefined && Array.isArray(args[0]) === false) {
-//      console.log("generate: " + args)
       return this.generate_1d(args);
     }
 
+    // make the array.  it recursively calls itself to make each element
     var result = [], i, loopsize = args.shift();
-//    args.push(loopsize);
-    if (typeof(loopsize) != 'number') {
-      loopsize = 0;
-    }
     for(i=0; i < loopsize; i++) {
       var subArraySize = args;
-//      console.log(loopsize, subArraySize);
       result.push(this.generate.apply(this, args) );
     }
     return result;
-
-    // if (tier1 === undefined) {
-    //   return this.generate_2d(3,3);
-    // }
-
-    // if (tier2 === undefined) {
-    //   return this.generate_1d(tier1);
-    // }
-
-    // if (tier3 === undefined) {
-    //   return this.generate_2d(tier1, tier2);
-    // }
-
-    // return this.generate_3d(tier1, tier2, tier3);
-
   },
 
   generate_1d: function(tier1) {
