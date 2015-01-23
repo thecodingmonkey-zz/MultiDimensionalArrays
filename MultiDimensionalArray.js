@@ -1,4 +1,5 @@
 var default_array_size = 3;
+var HALFSIES = 0.5;
 
 module.exports = {
   generate: function() {
@@ -42,7 +43,7 @@ module.exports = {
     for(var i=0; i < tier1; i++) {
       // val = a random value, either 0 or 1.  did NOT use a ternary here
       var val = 0;
-      if (Math.random() > 0.5) {
+      if (Math.random() > HALFSIES) {
         val = 1;
       }
 
